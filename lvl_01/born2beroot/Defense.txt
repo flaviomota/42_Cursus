@@ -1,0 +1,51 @@
+1.	The basic difference of CentOS and Debian
+
+	CentOS vs Debian
+
+	CentOS:
+	-	Supported by the Red Hat community;
+	-	CentOS has a large market due to its user-friendly nature;
+	-	CentOS does not come with multiple architecture support;
+	-	New updates and upgrades usually take time, thus making it stable;
+	-	It is better to install a new CentOS version rather than go for upgrading the older version. This task is cumbersome;
+	-	CentOS has a complicated GUI;
+	-	CentOS uses YUM as its package manage;
+	-	CentOS has limited packages;
+
+	Debian:
+	-	Supported by Debian individuals;
+	-	Debian	lacks market presence due to its terminal end usage;
+	-	Debian has multiple architecture support as compared to other distributions;
+	-	It has a release cycle of 2 years, thus giving it enough time to fix bugs;
+	-	Debian can be easily upgraded from one stable version to another;
+	-	Debian comes with user-friendly applications and GUI;
+	-	Debian uses apt-get as its package manager;
+	-	Debian has a vast amount of packages in ist default repository to do something;
+
+2.	What is the difference between aptitude and apt?
+
+	“Apart from main difference being that Aptitude is a high-level package manager
+	while APT is lower-level package manager which can be used by other higher-level
+	package managers, other main highlights that separate these two package managers are:
+
+		1.	Aptitude is vaster in functionality than apt-get and integrates functionalities
+		of apt-get and its other variants including apt-mark and apt-cache.
+
+	While apt-get handles all the package installation, up-gradation, system-upgradation,
+	purging package, resolving dependencies etc., Aptitude handles lot more stuff than apt,
+	including functionalities of apt-mark and apt-cache i.e. searching for a package in list
+	of installed packages, marking a package to be automatically or manually installed, holding
+	a package making it unavailable for up-gradation and so on.”
+
+3. Difference between SELinux and APPArmor?
+
+	“These security systems provide tools to isolate applications from each other and in turn
+	isolate an attacker from the rest of the system when an application is compromised.
+
+		SELinux rule sets are incredibly complex but with this complexity you have more control over
+		how processes are isolated. Generating these policies can be automated. A strike against this
+		security system is that its very difficult to independently verify.
+
+		AppArmor (and SMACK) is very straight forward. The profiles can be hand written by humans,
+		or generated using aa-logprof. AppArmor uses path based control, making the system more transparent
+		so it can be independently verified.”
