@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmota <fmota@student.42lisboa.com>         +#+  +:+       +#+        */
+/*   By: fmota <fmota@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 18:19:10 by fmota             #+#    #+#             */
-/*   Updated: 2021/02/08 18:19:10 by fmota            ###   ########.fr       */
+/*   Updated: 2021/10/31 17:38:01 by fmota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	if (!src || !dst)
+	if (!dst && !src)
 		return (0);
-	if (dstsize == 0)
-		return (ft_strlen(src));
-	while (src[i] != '\0' && i < dstsize - 1)
+	while (*src && i + 1 < dstsize)
 	{
-		dst[i] = src[i];
-		i++;
+		*dst++ = *src++;
+		++i;
 	}
-	dst[i] = '\0';
-	return (ft_strlen(src));
+	if (i < dstsize)
+		*dst = 0;
+	while (*src++)
+		++i;
+	return (i);
 }

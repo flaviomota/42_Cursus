@@ -3,80 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmota <fmota@student.42lisboa.com>         +#+  +:+       +#+        */
+/*   By: fmota <fmota@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:23:05 by fmota             #+#    #+#             */
-/*   Updated: 2021/02/10 14:23:05 by fmota            ###   ########.fr       */
+/*   Updated: 2021/10/31 17:38:56 by fmota            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int count_words(char const *str, char c)
+static size_t	ft_toklen(const char *s, char c)
 {
-	int count;
-	int i;
+	size_t	len;
 
-	count = 0;
-	i = 0;
-	while (str[i])
+	len = 0;
+	while (*s)
 	{
-		while (str[i] && (str[i] == c))
-			i++;
-		if (str[i] && str[i] != c)
+		if (*s != c)
 		{
-			count++;
-			while (str[i] && str[i] != c)
-				i++;
+			++len;
+			while (*s && *s != c)
+				++s;
 		}
+		else
+			++s;
 	}
-	return (count);
+	return (len);
 }
 
-static char *malloc_word(char const *str, char c)
+char	**ft_split(const char *s, char c)
 {
-	char *word;
-	int i;
-
-	i = 0;
-	while (str[i] && str[i] != c)
-		i++;
-	if (!(word = (char *)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	i = 0;
-	while (str[i] && str[i] != c)
-	{
-		word[i] = str[i];
-		i++;
-	}
-	word[i] = '\0';
-	return (word);
-}
-
-char **ft_split(char const *s, char c)
-{
-	char **tab;
-	int x;
-	int y;
+	char	**ret;
+	size_t	i;
+	size_t	len;
 
 	if (!s)
-		return (NULL);
-	if (!(tab = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1))))
-		return (NULL);
-	x = 0;
-	y = 0;
-	while (s[x])
+		return (0);
+	i = 0;
+	ret = malloc(sizeof(char *) * (ft_toklen(s, c) + 1));
+	if (!ret)
+		return (0);
+	while (*s)
 	{
-		while (s[x] && (s[x] == c))
-			x++;
-		if (s[x] && s[x] != c)
+		if (*s != c)
 		{
-			tab[y] = malloc_word(s + x, c);
-			y++;
-			while (s[x] && s[x] != c)
-				x++;
+			len = 0;
+			while (*s && *s != c && ++len)
+				++s;
+			ret[i++] = ft_substr(s - len, 0, len);
 		}
+		else
+			++s;
 	}
-	tab[y] = NULL;
-	return (tab);
+	ret[i] = 0;
+	return (ret);
 }
